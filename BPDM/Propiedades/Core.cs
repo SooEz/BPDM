@@ -7,12 +7,12 @@ namespace BrokeProtocol.GameSource
     public class Core : Plugin
     {
         public static Core Instance { get; internal set; }
-        public NewtonSoft Settings { get; set; }
+        public Settings Settings { get; set; }
 
         public Core()
         {
             var path = Path.Combine("DMBP", "settings.json");
-            Settings = JsonConvert.DeserializeObject<NewtonSoft>(File.ReadAllText(path));
+            Settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(path));
 
             Instance = this;
             Info = new PluginInfo("Deathmatch v0.1", "gamesource")
