@@ -1,6 +1,6 @@
 ﻿namespace BrokeProtocol.GameSource
 {
-    public class NewtonSoft
+    public class Settings
     {
         public string nameserver { get; set; }
         public string discordlink { get; set; }

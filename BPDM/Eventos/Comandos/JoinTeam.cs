@@ -10,11 +10,8 @@ using UnityEngine;
 
 namespace BrokeProtocol.CustomEvents
 {
-    public class Jointeam : IScript
+    public class JoinTeam : IScript
     {
-        public static string red { get; } = "BPDM:TEAMRED";
-        public static string blue { get; } = "BPDM:TEAMBLUE";
-
         public Jointeam()
         {
             CommandHandler.RegisterCommand("jointeam", new Action<ShPlayer, string>(Invoke));
@@ -26,21 +23,21 @@ namespace BrokeProtocol.CustomEvents
             {
                 Vector3 BlueSpawn = new Vector3(1, 2, 3); //COORDENADAS PARA TELETRASPORTARLOS A LA BASE AZUL.
                 player.SetPositionSafe(BlueSpawn);
-                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.GameMessage, "You just joined the team &1Blue&f.");
-                player.svPlayer.CustomData.AddOrUpdate(blue, true);
+                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.GameMessage, "You just joined &1Blue&f team.");
+                player.svPlayer.CustomData.AddOrUpdate(Core.Instance.TeamKey, "Blue");
                 return;
             }
             else if (team == "Red")
             {
                 Vector3 RedSpawn = new Vector3(1, 2, 3); //COORDENADAS PARA TELETRASPORTARLOS A LA BASE ROJA.
                 player.SetPositionSafe(RedSpawn);
-                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.GameMessage, "You just joined the team &1Red&f.");
-                player.svPlayer.CustomData.AddOrUpdate(red, true);
+                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.GameMessage, "You just joined &1Red&f team.");
+                player.svPlayer.CustomData.AddOrUpdate(Core.Instance.TeamKey, "Red");
                 return;
             }
             else
             {
-                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.GameMessage, "Error: You can only join on team &4Red&f or &1Blue&f.");
+                player.svPlayer.Send(SvSendType.Self, Channel.Reliable, ClPacket.GameMessage, "Error: You can only join team &4Red&f or &1Blue&f.");
             }
         }
     }
